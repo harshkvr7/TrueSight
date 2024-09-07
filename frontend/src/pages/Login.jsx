@@ -1,31 +1,34 @@
 import axios from 'axios';
-import React, { useContext, useState } from 'react'
+import React,{useContext, useState} from 'react'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/authContext';
 
 const Login = () => {
-    const [inputs, setInputs] = React.useState({
-        username: "",
-        password: "",
-    })
-    const [err, setErr] = React.useState(null);
+  const [inputs, setInputs] = React.useState({
+    username : "",
+    password : "",
+  })
+  const [err, setErr] = React.useState(null);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    function handleChange(e) {
-        setInputs(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  const {login} = useContext(AuthContext);
+
+  function handleChange(e) {
+    setInputs(prev => ({...prev, [e.target.name] : e.target.value}))
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      await login(inputs);
+      navigate("/")
+    } catch (error) {
+      setErr(error.response.data)
     }
-
-    async function handleSubmit(e) {
-        e.preventDefault();
-
-        try {
-            await login(inputs);
-            navigate("/")
-        } catch (error) {
-            setErr(error.response.data)
-        }
-    }
+  }
 
     return (
         <div className="flex justify-center h-screen bg-gray-300">

@@ -1,12 +1,20 @@
-const express = require('express');
-const axios = require('axios');
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
-const FormData = require('form-data');
+import express from 'express';
+import axios from 'axios';
+import multer from 'multer';
+import fs from 'fs';
+import FormData from 'form-data';
+import cors from 'cors';
+import authRoutes from './routes/auth.js';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+
 const app = express();
-const cors = require('cors');
-app.use(cors());
+
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors({credentials:true}));
+app.use(bodyParser.urlencoded({extended:true}));
+
 const port = 3000;
 
 const flaskApiUrl = 'http://localhost:5000/predict';
@@ -35,7 +43,9 @@ const sendImageToFlask = async (filePath) => {
     const response = await axios.post(flaskApiUrl, formData, {
       headers: formData.getHeaders()
     });
+
     console.log(response.data);
+
     return response.data;
   } catch (error) {
     console.error('Error sending image to Flask API:', error);
@@ -53,14 +63,16 @@ app.post('/upload', upload.single('image'), async (req, res) => {
   try {
     const prediction = await sendImageToFlask(filePath);
 
-    fs.unlinkSync(filePath); 
+    fs.unlinkSync(filePath);
 
     res.json(prediction);
   } catch (error) {
-      console.error('Error processing image:', error);
-      res.status(500).json({ error: 'Internal server error' });
+    console.error('Error processing image:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+app.use("/api/auth", authRoutes);
 
 app.listen(port, () => {
   console.log(`Node.js backend listening on port ${port}`);

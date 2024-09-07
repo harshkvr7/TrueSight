@@ -1,10 +1,26 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { initializeApp } from 'firebase/app';
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDbKkkqOZGTBIwNW3-4nH6hjnprfOZwkMU",
+    authDomain: "blog3-23fa5.firebaseapp.com",
+    projectId: "blog3-23fa5",
+    storageBucket: "blog3-23fa5.appspot.com",
+    messagingSenderId: "105259008762",
+    appId: "1:105259008762:web:bb1bd1f4c19aeaf3ebbf43",
+    measurementId: "G-DNZGDL3VD0"
+};
+
+const fireapp = initializeApp(firebaseConfig);
+const storage = getStorage(fireapp);
 
 const Register = () => {
     const [inputs, setInputs] = React.useState({
         username: "",
+        email: "",
         password: "",
     })
     const [file, setFile] = useState(null);
@@ -13,7 +29,17 @@ const Register = () => {
     const navigate = useNavigate();
 
     const upload = async () => {
+        try {
+            const fileName = Date.now() + file.name;
+            const storageRef = ref(storage, "uploads/" + fileName);
 
+            await uploadBytes(storageRef, file);
+
+            return fileName;
+        } catch (error) {
+            console.log(error)
+            alert(error);
+        }
     }
 
     function handleChange(e) {
@@ -89,11 +115,10 @@ const Register = () => {
                     </button>
                     {err && <p className="text-red-500 text-sm mt-2">{err}</p>}
 
-                    <button class="px-4 mt-3 w-full py-2 border flex gap-2 border-slate-300  rounded-lg text-slate-600 hover:border-slate-400  hover:text-black hover:shadow transition duration-250">
-                        <img class="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo" />
+                    <button className="px-4 mt-3 w-full py-2 border flex gap-2 border-slate-300  rounded-lg text-slate-600 hover:border-slate-400  hover:text-black hover:shadow transition duration-250">
+                        <img className="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo" />
                         <span>Login with Google</span>
                     </button>
-                    
                     <span className="block mt-3 text-center ">
                         Do you have an account?{" "}
                         <Link className="text-blue-500 hover:underline" to="/login">
