@@ -23,8 +23,8 @@ const Navbar = () => {
         <li><span className="text-l text-gray-300 hover:text-white" href="#"><Link to={"/feedback"}>Feedback</Link></span></li>
       </ul>
       
-      <a className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-700 hover:bg-gray-600 text-sm text-gray-300 font-bold rounded-xl transition duration-200" href="#">Sign In</a>
-      <a className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" href="#">Sign up</a>
+      <Link to={"/login"} className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-700 hover:bg-gray-600 text-sm text-gray-300 font-bold rounded-xl transition duration-200" href="#">Sign In</Link>
+      <Link to={"/register"} className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" href="#">Sign up</Link>
     </nav>
   )
 }

@@ -58,9 +58,9 @@ const MultiImageUpload = () => {
       </p>
 
       <div className="flex flex-col items-center justify-center p-4">
-        <div className="border-dashed border-2 border-gray-500 rounded-lg w-64 h-64 flex items-center justify-center relative">
+        <div className="border-dashed border-2 border-gray-500 rounded-lg min-w-64 h-64 flex items-center justify-center relative">
           {previews.length > 0 ? (
-            <div className="flex overflow-x-auto space-x-4">
+            <div className="flex space-x-4">
               {previews.map((preview, index) => (
                 <img
                   key={index}

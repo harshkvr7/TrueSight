@@ -6,7 +6,7 @@ const Main = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [prediction, setPrediction] = useState(null);
   const [image, setImage] = useState(null);
-  const [fileInputKey, setFileInputKey] = useState(Date.now()); // Key for resetting input
+  const [fileInputKey, setFileInputKey] = useState(Date.now()); 
 
   const handleFileDrop = (acceptedFiles) => {
     setSelectedFile(acceptedFiles[0]);
@@ -35,18 +35,18 @@ const Main = () => {
   const handleClear = () => {
     setSelectedFile(null);
     setImage(null);
-    setFileInputKey(Date.now()); // Reset input value
+    setFileInputKey(Date.now()); 
   };
 
   const handleCameraCapture = () => {
-    document.getElementById('cameraUpload').click(); // Trigger file input click
+    document.getElementById('cameraUpload').click(); 
   };
 
   return (
     <div className="bg-gray-900 text-white h-screen flex flex-col items-center pt-14">
       <p className="text-center text-gray-300 mt-8 max-w-2xl pb-7">
         To get started, upload an image by dragging and dropping it into the box, clicking to browse your files, or taking a photo with your camera.
-        Once uploaded, our AI will analyze the image and provide detailed predictions. Clear the image to upload a new one. 
+        Once uploaded, our AI will analyze the image and provide detailed predictions.
         <span> </span> <Link to={"/try/multi"} className='underline font-bold'>Process multiple files ↗</Link>
       </p>
 
@@ -70,7 +70,7 @@ const Main = () => {
           )}
           <input
             id="imageUpload"
-            key={fileInputKey} // Reset input on clear
+            key={fileInputKey}
             type="file"
             accept="image/*"
             className="absolute inset-0 opacity-0 cursor-pointer"
@@ -80,7 +80,7 @@ const Main = () => {
             id="cameraUpload"
             type="file"
             accept="image/*"
-            capture="environment" // Use "user" for front camera, "environment" for back camera
+            capture="environment"
             className="hidden"
             onChange={handleImageChange}
           />

@@ -13,6 +13,8 @@ import Main from './pages/Main';
 import About from './pages/About';
 import Feedback from './pages/Feedback';
 import MultiImageUpload from './pages/MultiFile';
+import Register from './pages/Register';
+import Login from './pages/Login';
 
 const router = createBrowserRouter([
   {
@@ -52,6 +54,22 @@ const router = createBrowserRouter([
     element: <>
       <Navbar/>
       <MultiImageUpload />
+      <Footer />
+    </>,
+  },
+  {
+    path: "/register",
+    element: <>
+      <Navbar/>
+      <Register />
+      <Footer />
+    </>,
+  },
+  {
+    path: "/login",
+    element: <>
+      <Navbar/>
+      <Login />
       <Footer />
     </>,
   },
