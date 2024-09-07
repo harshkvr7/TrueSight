@@ -35,7 +35,7 @@ const sendImageToFlask = async (filePath) => {
     const response = await axios.post(flaskApiUrl, formData, {
       headers: formData.getHeaders()
     });
-
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error('Error sending image to Flask API:', error);
