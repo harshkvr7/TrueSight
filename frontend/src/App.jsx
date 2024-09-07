@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import Main from './pages/Main';
 import About from './pages/About';
 import Feedback from './pages/Feedback';
+import MultiImageUpload from './pages/MultiFile';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,14 @@ const router = createBrowserRouter([
       <Feedback />
       <Footer/>
     </>
+  },
+  {
+    path: "/try/multi",
+    element: <>
+      <Navbar/>
+      <MultiImageUpload />
+      <Footer />
+    </>,
   },
 ]);
 

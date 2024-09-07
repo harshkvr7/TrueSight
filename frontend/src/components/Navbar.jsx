@@ -16,9 +16,9 @@ const Navbar = () => {
         </button>
       </div>
       
-      <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
+      <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:items-center lg:w-auto lg:space-x-6">
         <li><span className="text-l text-gray-300 hover:text-white" href="#"><Link to={"/"}>Home</Link></span></li>
-        <li><span className="text-l text-gray-300 hover:text-white" href="#"><Link to={"/about"}>About Us</Link></span></li>
+        <li><span className="text-l text-gray-300 hover:text-white" href="#"><Link to={"/about"}>About us</Link></span></li>
         <li><span className="text-l text-gray-300 hover:text-white" href="#"><Link to={"/try"}>Services</Link></span></li>
         <li><span className="text-l text-gray-300 hover:text-white" href="#"><Link to={"/feedback"}>Feedback</Link></span></li>
       </ul>

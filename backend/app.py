@@ -11,7 +11,6 @@ import os
 
 app = Flask(__name__)
 
-# Load the model
 model = load_model('model_vgg16_01.h5')
 
 def predict_image(img_path, class_names=['Fake', 'Real']):
@@ -23,7 +22,7 @@ def predict_image(img_path, class_names=['Fake', 'Real']):
     prediction = model.predict(img_array)
     probability = prediction[0][0]
     predicted_class = class_names[int(np.round(probability))]
-    confidence = abs(probability - 0.5) * 2 * 100  
+    confidence = probability * 100  
 
     return predicted_class, confidence
 

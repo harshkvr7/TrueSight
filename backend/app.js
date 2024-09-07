@@ -53,7 +53,7 @@ app.post('/upload', upload.single('image'), async (req, res) => {
   try {
     const prediction = await sendImageToFlask(filePath);
 
-    fs.unlinkSync(filePath); // Clean up temporary file
+    fs.unlinkSync(filePath); 
 
     res.json(prediction);
   } catch (error) {
